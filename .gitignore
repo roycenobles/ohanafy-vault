@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Obsidian: per-device UI state, changes on every open
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspace/
+
+# Obsidian trash
+.trash/
+
+# iCloud placeholders and conflict artifacts
+*.icloud
+* (conflicted copy)*

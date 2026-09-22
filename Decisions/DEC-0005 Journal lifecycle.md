@@ -26,7 +26,8 @@ Tasks written in daily notes went unseen after the day passed, and knowledge did
 - Log headings in fronts are links to journal days (`## [[2026-09-08]]`), which is how a front records what fed it.
 - A custom checkbox state such as `[>]` was tried and rejected: default Obsidian renders any non-space character as a checked box, which reads as "done." The `↪` glyph is deliberately not a checkbox.
 - A task forwarded to a front is closed in the front, not in the journal. If Royce ticks the journal line anyway, the reconcile treats that as a signal to close the item in the front; the line is otherwise never edited.
-- Journal notes are archived monthly into `Journal/YYYY/MM-Month/`. Links resolve by filename, so archiving does not affect fronts or marks; the reconcile searches `Journal/` recursively. The archive move is a candidate for a month-end skill, or can be eliminated by setting the Daily Notes date format to `YYYY/MM-MMMM/YYYY-MM-DD`.
+- Journal notes live in `Journal/YYYY/MM-Month/`. Daily Notes creates each day there directly (format `YYYY/MM-MMMM/YYYY-MM-DD`, set 2026-09-23), so no archive move exists. The folder is organization only; state lives in the note. Links resolve by filename, so location never affects fronts or marks; anything reading the journal searches recursively.
+- New days start from `Templates/Daily` (Tasks / Meetings / Notes) so triage can tell tasks from meeting content from observations without inference. Older days keep whatever shape they had.
 - Triage is the only process that reads the journal. Per-front reconcile reads what triage routed to it, plus Slack and Jira; it does not rescan journal days.
 - Items whose front does not yet exist go to `Fronts/Unrouted.md`. A cluster forming there is the signal to create a front.
 - The ten days extracted for the Mobile front on 2026-09-22 carry forwarded lines only; they are not `processed` until their non-mobile items are triaged.

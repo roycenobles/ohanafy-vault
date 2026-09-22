@@ -2,10 +2,10 @@
 title: Claude Working System
 type: plan
 status: living
-updated: 2026-09-22
+updated: 2026-09-23
 source: https://claude.ai/code/artifact/3b82f615-f9ec-4a42-935a-a22ec84d68d0
 ---
-> Vault copy of the plan. The collaborative, commentable version is the [Claude doc](https://claude.ai/code/artifact/3b82f615-f9ec-4a42-935a-a22ec84d68d0); this note is re-exported from it when the plan changes. Decisions referenced here live in `Decisions/` ([[DEC-0001 Vault sync model]], [[DEC-0002 Identity documents live outside the vault]], [[DEC-0003 GitHub credential for cloud roles]], [[DEC-0004 Review before history]]).
+> Vault copy of the plan. The collaborative, commentable version is the [Claude doc](https://claude.ai/code/artifact/3b82f615-f9ec-4a42-935a-a22ec84d68d0); this note is re-exported from it when the plan changes. Decisions referenced here live in `Decisions/` ([[DEC-0001 Vault sync model]], [[DEC-0002 Identity documents live outside the vault]], [[DEC-0003 GitHub credential for cloud roles]], [[DEC-0004 Review before history]], [[DEC-0005 Journal lifecycle]]).
 
 # Claude Working System
 
@@ -81,7 +81,7 @@ flowchart LR
 
 Everything flows through the vault. Roles read it before acting and write to it after; Royce reads it in Obsidian and writes to it directly or through Claude Code; shareable artifacts are rendered from it, not written beside it.
 
-Information flows one way: capture, then extract, then front or decision, then status. The journal is immutable capture; processing marks it (a `processed` frontmatter list per day, and moved tasks become `[>]` forwarded with a link to their front) but never rewrites it. After processing, the journal holds no open tasks, so fronts are the only place open threads live ([[DEC-0005 Journal lifecycle|DEC-0005]], proposed). The vault's `CLAUDE.md` is the map every session reads first; it encodes the layout, the note shapes, this flow, and the working rules.
+Information flows one way: capture, then triage, then front or decision, then status. The journal is immutable capture. Triage is a per-day act: every durable item is routed to a front, a decision, a reference note, or `Fronts/Unrouted.md`, moved tasks become `↪` forwarded lines linking to their front, and the day gets a single `processed` date meaning it has been triaged, whatever it touched. After triage the journal holds no open tasks, so fronts are the only place open threads live. Provenance runs through links: forwarded lines point to the front, and the front's Log headings link back to the journal day. Reconcile, per front, reads what triage routed to it plus Slack and Jira; it does not rescan the journal ([[DEC-0005 Journal lifecycle|DEC-0005]], proposed). The vault's `CLAUDE.md` is the map every session reads first; it encodes the layout, the note shapes, this flow, and the working rules.
 
 **Memory.** A small set of note types, each with a fixed shape so both Royce and agents can find and fill them. Fronts (one note per area of responsibility: Mobile, Salesforce platform, AWS, Security and compliance, Integrations, Data and cost, AI strategy), modeled on the existing Mobile Application note. Decisions (one note per decision: context, options, choice, consequences, date, who was told; the executive-layer equivalent of the ADRs the team already writes). Open threads (a single view of every unresolved task and question, wherever it was captured). Learnings (things that turned out to be true or false, the compound-engineering pattern applied to the whole role). People and systems (who owns what, what talks to what) as lightweight reference notes.
 
@@ -104,10 +104,10 @@ The decision log lives in the vault under `Decisions/`, one note per decision in
 | Write rule for agents | Three tiers; or one line | Decided: one line, in DEC-0002 | Simple enough to be followed by every role without interpretation |
 | Review before history | (a) Claude commits directly; (b) Claude stages, Royce commits; roles work on branches and open PRs | Decided (b), [[DEC-0004 Review before history\|DEC-0004]] | Every change is read before it becomes history; PRs are the review surface for unattended roles |
 | GitHub credential for cloud roles | (a) proxy-injected credential, as Salesforce and Jira already are; (b) fine-grained token in the task configuration | Pending, [[DEC-0003 GitHub credential for cloud roles\|DEC-0003]]. Due when the first role runs unattended | Whichever path, scoped to one repo, contents only, with an expiry |
-| Note shapes | Fronts, decisions, open threads, learnings, reference; or fewer to start | Open. Leaning: all five, templates for fronts and decisions first | Shapes are what make retrieval by topic work |
-| Retrofit the journal | Extract Aug 31 to Sep 22 now; or start clean | Open. Leaning: extract once, as the first supervised task | 27 open items and decision-bearing leadership notes exist |
+| Note shapes | Fronts, decisions, open threads, learnings, reference; or fewer to start | In progress. Front and decision shapes exist by example (Mobile Application, DEC-0001) and are written into `CLAUDE.md`; open threads live inside fronts rather than as a separate type; learnings and reference not started | Shapes are what make retrieval by topic work |
+| Retrofit the journal | Extract Aug 31 to Sep 22 now; or start clean | In progress. Mobile content extracted 2026-09-22; 19 non-mobile open tasks await triage, mostly into fronts not yet created | The first triage backlog; also the test of the convention |
 | First role | Architecture; security; or an open-threads keeper | Open. Leaning: keeper first, architecture second | The keeper is the smallest role that proves the memory loop |
-| Where daily capture happens | Obsidian daily notes; Claude Code; both | Open. Leaning: keep daily notes, add extraction | Capture already works; extraction is what is missing |
+| Where daily capture happens | Obsidian daily notes; Claude Code; both | Decided 2026-09-23: Obsidian daily notes from `Templates/Daily`, created directly in `Journal/YYYY/MM-Month/`; triage moves content onward (DEC-0005) | Capture already worked; the template makes triage cheap |
 | Claude Code configuration scope | Vault-level only; or shared with the engineering repos | Open. Leaning: vault-level first | Engineering already compounds through its own plugin |
 
 Tooling settled alongside these: the Open in Terminal plugin (Warp) for deliberate git and Claude Code sessions inside the vault, with Obsidian Git to follow for the background commit loop (slow interval, disabled on mobile).
@@ -139,7 +139,9 @@ Moves that do not depend on the answers:
 
 1. ~~Move the verification documents out of the vault.~~ Done 2026-09-21; now in Bitwarden.
 2. ~~Initialize the repo, push to a private GitHub repository, log the sync-model decision.~~ Done 2026-09-22; DEC-0001 through DEC-0003 in `Decisions/`.
-3. Draft templates for two note shapes only: a front and a decision (the decision shape now exists by example in DEC-0001).
-4. Write the vault's Claude configuration to encode the note shapes and the one-line write rule.
-5. Extract the journal (Aug 31 to Sep 22) into fronts, decisions, and open threads, supervised.
-6. Only then: point the existing Slack scan at the vault.
+3. ~~Draft templates for two note shapes only: a front and a decision.~~ Done by example 2026-09-22 (Mobile front, DEC-0001), written into `CLAUDE.md`; a daily-note template added 2026-09-23. Template files for fronts and decisions can follow when the second front is created.
+4. ~~Write the vault's Claude configuration.~~ Done 2026-09-22: `CLAUDE.md` at the vault root.
+5. Royce corrects the Mobile front; then reconcile it against Slack and Jira; then import the Claude Project's content and rewrite its instructions as a charter.
+6. Triage the remaining September journal days (19 open tasks), creating fronts or parking in `Fronts/Unrouted.md` as they cluster.
+7. Write the triage and reconcile procedures as skills once they have each been done by hand twice.
+8. Only then: point the existing Slack scan at the vault.

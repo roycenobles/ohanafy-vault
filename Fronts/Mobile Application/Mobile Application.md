@@ -92,27 +92,27 @@ Owner in parentheses; date is when the thread was captured.
 - For iOS, [Apple TestFlight](https://testflight.apple.com) is a reliable backup strategy if business registration and security review run long.
 - Confirmed that mobile device users have Salesforce Platform License, so API connectivity should not be problematic.
 - Working from [[Hardware Breakdown.png|Hardware Breakdown]] to determine platform priority.
-## 2026-09-01
+## [[2026-09-01]]
 - Leadership: Gulf build pencils down 9/14; 9/28 reinforced as not a go-live-ready date. Bug bash to be defined (iPad, iPhone, Android?). Printing app exists (Thomas). Open question of building our own app versus working with Salesforce, and hybrid options.
-## 2026-09-08
+## [[2026-09-08]]
 - Created [[Mobile Launch Brief.pdf|Mobile Launch Brief]] to guide timeline for delivery.
 - Began registration process for Apple Business and Google Play.
 - Leadership: derisking mobile is job one this week. Need access to Apple and Google accounts. Researching how the SF mobile app understands org configuration. Sep 28 messaging: less is more, a right move six months in the making, not a last-minute audible; Hogan and Matt to align by EOD Wed.
-## 2026-09-09
+## [[2026-09-09]]
 - Met with Matt, Josh, Elliot and Jeff to define progress tracks and assign responsibilities (see `tracks` above).
-## 2026-09-10
+## [[2026-09-10]]
 - Received the [Requirements Document](https://docs.google.com/document/d/1GHJZU3g-R_bHOY-oWG99vewXhBCfeLyegmLwRzbxM7M/edit?tab=t.0) for review.
 - Replied to additional information requests from Apple Business and Google Play. Google Play confirmed verification.
 - Requirements review: data scope filtering is critical; AWS pre-processing and a `mobile.ohanafy.com` API hook floated; consider tracking device update state. Warehouse/inventory agreed to be delayed (Matt). Gulf field users ≈ 500. Load and reconciliation flagged as an issue.
-## 2026-09-11
+## [[2026-09-11]]
 - Grooming day 2: signature capture is CYA not regulatory; printing is HTML not PDF; research "enterprise ready"; OCR likely means a captured-offline flag; check unlimited API limit; validate flows before polish.
-## 2026-09-15
+## [[2026-09-15]]
 - Leadership: discuss printing app with Jeff and Thomas. Messaging on the app to stay a non-event; communication from Ian/Hogan; Royce to supply benefit details with Elliot.
-## 2026-09-17
+## [[2026-09-17]]
 - Captured the companion-app perspective questions (release cycle, compatibility, updates, multi-org). Scheduled mobile enablement with Jeff and Mack. Noted that mobile was not surfaced as a risk in leadership; unresolved whether that was right.
-## 2026-09-21
+## [[2026-09-21]]
 - Need a sandbox user for Jeff. Check-deposit use case needs understanding.
-## 2026-09-22
+## [[2026-09-22]]
 - Jeff's security review org must be kept from deletion. Takeaway on CD: provision a dedicated org for mobile continuous delivery after Gulf settles and feed its credentials into the iOS security review submission. Test SSO. Set up TestFlight for Ohanafy people. External client app: talk to Bryson later.
 
 # Reference

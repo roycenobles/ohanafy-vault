@@ -33,7 +33,7 @@ Sections in this order:
 4. `# Open threads` — `## Decisions needed`, `## Tasks`, `## Questions`. Checkboxes with owner and capture date. **Rewritten**: resolved items are removed here and recorded in the Log.
 5. `# Decisions` — links to DEC notes; candidates not yet written up.
 6. `# People` — who is involved and in what role.
-7. `# Log` — dated, **append-only**. Cite sources (journal date, Slack permalink, Jira key).
+7. `# Log` — dated, **append-only**. Date headings link to the journal day (`## [[2026-09-08]]`); cite Slack permalinks and Jira keys inline.
 8. `# Reference` — links only. Nothing authoritative is copied into a front.
 
 The Status section should answer a hallway question in under a minute: dates, owners, what is blocked, what changed.
@@ -47,15 +47,16 @@ No required shape. Headings vary by day and that is fine.
 
 ## Information flow
 
-Capture → extract → front/decision → status. One direction. Nothing is authoritative in two places.
+Capture → triage → front/decision → status. One direction. Nothing is authoritative in two places.
 
 - **Capture** happens wherever Royce is: journal, a chat, a Claude Code session, Slack.
-- **Extract** moves durable content into fronts and decisions and **marks the source**:
-  - The journal day gets frontmatter `processed: ["[[Name]]"]` (a flat list of front links; append if already present). When the day was processed is in git history and the front's Log, not here.
-  - An open task that moved becomes forwarded: `- [ ] text` → `- ↪ text → [[Name]]`. A plain glyph, not a checkbox state, so it reads as "moved" rather than "done." After processing, the journal holds no open tasks; **fronts are the only place open threads live**.
+- **Triage** is a per-day act, done once: read the day, route every durable item to a front, a decision, a reference note, or `Fronts/Unrouted.md` (for items whose front does not exist yet), and deliberately leave ephemeral content where it is. Then **mark the day**:
+  - `processed: YYYY-MM-DD` in frontmatter means the day has been triaged. This is the only meaning of "done" for a journal day, and it holds even if the day touched no front at all.
+  - An open task that moved becomes forwarded: `- [ ] text` → `- ↪ text → [[Name]]`. A plain glyph, not a checkbox state, so it reads as "moved" rather than "done." After triage, the journal holds no open tasks; **fronts are the only place open threads live**.
   - If Royce later ticks a forwarded line (`- [x] … → [[Name]]`), treat it as a signal to close the item in the front. The journal line itself is not edited.
-  - Notes and observations stay verbatim; the frontmatter mark is their only trace.
-- **Reconcile** (per front, on a rhythm): read journal days not yet marked for this front, read the front's Slack channel and Jira epic, compare with the front, rewrite Status and Open threads, append to Log with sources, bump `as_of`, mark the journal days. Stage for review.
+  - Notes and observations stay verbatim. Provenance runs through links, not properties: the front's Log headings link to the journal day (`## [[2026-09-08]]`), and forwarded lines link to the front, so backlinks answer "what fed this front" and "where did this go" in both directions.
+- **Reconcile** (per front, on a rhythm) does not read the journal. It reads what triage routed to the front, the front's Slack channel and Jira epic, and the front itself; rewrites Status and Open threads; appends to Log with sources; bumps `as_of`. Stage for review.
+- When `Fronts/Unrouted.md` accumulates a cluster of related items, that is the signal to create a front.
 - **Status** is read by Royce in Obsidian and by any session asked "where does X stand."
 
 ## Working rules

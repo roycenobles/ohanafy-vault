@@ -2,88 +2,85 @@
 type: front
 title: Mobile Application
 status: active
-as_of: 2026-09-22
+as_of: 2026-09-23
 owner: Royce Nobles
 tracks:
-  - App development — Jeff (dev), Emily & Elliot (domain), Royce & Josh (architecture)
-  - App store registrations — Royce
+  - App development — Jeff (dev), Emily & Elliot (domain), Royce (architecture)
+  - App store registrations — Royce (complete)
+  - Enablement — Mack, with Royce (pre-planning)
   - Release planning past pilot — Elliot, Matt, Josh, Royce
 milestones:
-  - 2026-09-14 Gulf build pencils down (Matt)
-  - 2026-09-28 Mobile milestone — NOT a go-live-ready date
-  - 2026-09-24 to 2026-09-29 Royce on-site at Gulf
+  - 2026-10-12 Handoff to Gulf (moved from 2026-09-28; not a go-live-ready date)
   - 2026-12-14 Gulf rollout window ends (14 weeks from Sep 8)
 related:
   - "[[Gulf Pilot]]"
   - "[[AI Strategy]]"
-sources: vault only (journal + this note); not yet reconciled against Slack or Jira
+sources: journal through 2026-09-22, corrected with Royce 2026-09-23; not yet reconciled against Slack or Jira
 ---
-> Front note for the Ohanafy field mobile app. **Status** and **Open threads** are rewritten at each reconcile (see `as_of`). **Log** is append-only. **Reference** links out; nothing authoritative is copied in.
+> Front note for Ohanafy Mobile, the field app for Gulf and future customers. **Status** and **Open threads** are updated in place at each reconcile (see `as_of`). **Log** is append-only. **Reference** links out; nothing authoritative is copied in.
 
 > [!quote] Requirement (Elliot Flores)
 > As a tech business we need an app that supports a full route day with no connectivity issues, including printing, and starting a new order with zero signal AND supports scale (1,500 field users) following enterprise security requirements.
 
 # Status
 
-**Why this exists.** Salesforce discontinued Mobile Offline for new Mobile App Plus contracts effective 2026-07-31 ([[SF OEM Email.png|SF OEM email]]). The existing mobile experience does not meet the acceptance criteria above. Ohanafy is building its own field app (working name Ohanafy Native), with Gulf as the first deployment.
+**Why this exists.** The existing mobile experience does not meet the acceptance criteria above. Ohanafy is building Ohanafy Mobile, its own field app, with Gulf as the first deployment. Context: Salesforce discontinued Mobile Offline for new Mobile App Plus contracts effective 2026-07-31 ([[SF OEM Email.png|SF OEM email]]).
 
-**Where it stands (2026-09-22).** Derisking mobile has been the stated job-one since the Sep 8 leadership meeting. Registrations are done on the Google side (verified Sep 10) and in progress with Apple; Apple TestFlight is the fallback if Apple Business review runs long. Requirements were received Sep 10 and groomed over two sessions (Sep 10–11); the scope questions that came out of grooming are the bulk of the open threads below. Gulf field population is roughly 500 users (drivers, merchandisers, reps); the requirement is sized for 1,500. The Sep 28 date is a milestone, not a go-live, and leadership has agreed the messaging is "a non-event," owned by Ian and Hogan with Elliot refining details. Royce is on-site at Gulf Sep 24–29.
+**Where it stands (2026-09-23).** Handoff to Gulf is Oct 12 (moved from Sep 28); it is a handoff, not a go-live. Both store registrations are complete and TestFlight is in active use; the Apple App Store review of the iOS build is expected in the next few days, using Jeff's review org for demo credentials. Requirements review is finished; scope has grown several times and is now stabilizing. The separate printing app is being folded into the mobile app: a handoff meeting has happened and the remaining work sits with Jeff and Royce. Enablement pre-planning is underway with Mack. Gulf field population is roughly 500 users (drivers, merchandisers, reps), with a first rollout wave of 50; the requirement is sized for 1,500. Ian and Hogan own the external messaging for the handoff, with Elliot refining details; the current status of that communication is unknown.
 
-**Risks I am watching.**
-- Mobile was not surfaced as a risk in the Sep 17 leadership discussion; unresolved whether that was right (journal Sep 17).
-- Apple Business verification timeline versus the Sep 28 milestone.
-- Warehouse/inventory is the sensitive part of the system and was agreed to be delayed; load and reconciliation when a device comes back online is unresolved.
-- Companion-app lifecycle (release cycle, backward compatibility, update control, multi-org configuration) has no owner or design yet.
-- Security review process for the app is not yet understood.
+**Risks being watched.**
+- Scope growth: stabilizing, but it has moved several times since Sep 10.
+- Apple App Store review outcome and timing against the Oct 12 handoff.
+- Warehouse/inventory is the sensitive part of the system; deferred with no target date. Load and reconciliation when a device comes back online is unresolved.
+- Companion-app lifecycle (release cycle, backward compatibility, update control, multi-org configuration) has no design yet.
+- Jeff's security review org is not yet protected from deletion, and Jeff has no sandbox user.
 
 # Open threads
 
 Owner in parentheses; date is when the thread was captured.
 
 ## Decisions needed
-- [ ] Companion app perspective: release cycle and test/verify approach, backward compatibility, update control (push/pull/scheduled), multi-org configuration, and why native over mobile web. (Royce, 2026-09-17)
-- [ ] Printing: requirement is not PDF, likely HTML. When and how does the separate printing app (Thomas) fold into the mobile app? Discuss with Jeff and Thomas. (Royce, 2026-09-11 / 09-15)
+- [ ] Companion app perspective: release cycle and test/verify approach, backward compatibility, update control (push/pull/scheduled), multi-org configuration, and why a companion app over mobile web. (Royce, 2026-09-17)
+- [ ] Print output format: HTML was the grooming outcome on Sep 11; uncertain now that the printing app is folding in. Confirm as part of the printing work with Jeff. (Royce, 2026-09-11 / 09-23)
 - [ ] "OCR" in the requirements = a "captured offline" flag, not optical character recognition. Confirm and simplify. (Royce, 2026-09-11)
-- [ ] Scope guard: filtering required data on-device is critical; pre-processing from AWS and an API hook at `mobile.ohanafy.com` were floated. Decide how much of this is in scope for pilot. (Royce/Josh, 2026-09-10)
+- [ ] Scope guard: filtering required data on-device is critical; pre-processing from AWS and an API hook at `mobile.ohanafy.com` were floated. Decide how much of this is in scope for pilot. (Royce, 2026-09-10)
 - [ ] Reconciliation when back online: can conflicts be resolved outside the app, or at least via a fully online process? AWS may make this easier; what does that do to auth? (Royce, 2026-09-10)
-- [ ] External client app (beyond Gulf): plan with Bryson once Gulf go-live temperature drops. (Royce, 2026-09-22)
-- [ ] CD for mobile: provision a dedicated org for continuous delivery after Gulf settles, and pipe its credentials into the iOS security review submission. (Royce, 2026-09-22)
+- [ ] External client app: packaging the app's Salesforce-side components for installation into a customer's own org. Plan with Bryson once Gulf go-live temperature drops. (Royce, 2026-09-22)
+- [ ] CD for mobile: provision a dedicated org for continuous delivery after Gulf settles, and pipe its credentials into the iOS review submission. (Royce, 2026-09-22)
 
 ## Tasks
-- [ ] Carefully review the [Mobile App Requirements](https://docs.google.com/document/d/1GHJZU3g-R_bHOY-oWG99vewXhBCfeLyegmLwRzbxM7M/edit?tab=t.0). (Royce, 2026-09-11)
 - [ ] Get Jeff a sandbox user to test the app. (Royce, 2026-09-21)
 - [ ] Remove Jeff's security review org from deletion. (Royce, 2026-09-22)
-- [ ] Understand the Salesforce security review process for the app. (Royce, 2026-09-22)
+- [ ] Add Mack to TestFlight. (Royce, 2026-09-23)
 - [ ] Test SSO with the mobile app. (Royce, 2026-09-22)
-- [ ] Set up Ohanafy people on TestFlight. (Royce, 2026-09-22)
 - [ ] Understand the mobile check-deposit use case. (Royce, 2026-09-21)
 - [ ] Check whether the org has an unlimited API limit. (Royce, 2026-09-11)
 - [ ] Validate flows before polishing the app. (team, 2026-09-11)
-- [ ] Watch the Warehouse Z videos in Slack. (Royce, 2026-09-11)
 - [ ] Research what "enterprise ready" means for a mobile app (MDM: Gulf uses Ivanti). (Royce, 2026-09-11)
 - [ ] Research the Salesforce Mobile SDK and how the SF mobile app understands org configuration. (Royce, 2026-09-08 / 09-09)
 - [ ] Ask about RayRig and Sears Tech (warehouse hardware). (Royce, 2026-09-10)
-- [ ] Come up with details around the benefits of the app for the Sep 28 messaging (Ian/Hogan communicate). (Royce with Elliot, 2026-09-15)
+- [ ] Printing: remaining work to fold the printing app into Ohanafy Mobile. (Jeff & Royce, 2026-09-23)
 
 ## Questions
+- [ ] Status of the external handoff communication (Ian/Hogan own it)? (2026-09-23)
 - [ ] Do we need a partially-updated state when a device is actually online? (2026-09-10)
 - [ ] How do the many business rules sync to the app? (2026-09-10)
 - [ ] Is warehouse work better addressed with onsite hardware given better connectivity? (2026-09-10)
 - [ ] Signature capture on the sales rep side is mostly CYA against "I didn't order this," not regulatory. Does that change the requirement? (2026-09-11)
 - [ ] Bug bash scope: iPad, iPhone, and Android? (Matt, 2026-09-01)
+- [ ] Does a Slack channel or Jira epic exist for mobile? Royce doubts it; to be checked at first reconcile. (2026-09-23)
 
 # Decisions
-- None recorded yet as DEC notes. Candidates from the log: build our own app rather than extend Salesforce mobile (implicit since early discovery); Sep 28 is a milestone not a go-live (leadership, Sep 8); warehouse/inventory delayed (Matt, Sep 10); printing is HTML not PDF (grooming, Sep 11). Each should become a `Decisions/DEC-xxxx` note when confirmed.
+- None recorded yet as DEC notes. Candidates from the log: build our own app rather than extend Salesforce mobile (implicit since early discovery); handoff is not a go-live (leadership, Sep 8, reaffirmed with the Oct 12 date); warehouse/inventory deferred (Matt, Sep 10); printing app folds into the mobile app (handoff meeting, Sep 2026). Each should become a `Decisions/DEC-xxxx` note when confirmed.
 
 # People
-- Jeff — developer; needs sandbox user; has a security review org
-- Emily, Elliot — domain experts; Elliot owns requirement and messaging details
-- Josh — architecture with Royce; created the prototype overview
-- Matt — Gulf build owner; warehouse scope; bug bash
-- Thomas — printing app
-- Mack — mobile enablement discussion (Sep 18/22)
-- Bryson — external client app conversation (later)
-- Ian, Hogan — external messaging for Sep 28
+- Jeff — developer; needs sandbox user; owns the review org used for Apple demo credentials; taking on printing with Royce
+- Emily, Elliot — domain experts; Elliot owns the requirement and messaging details
+- Mack — enablement lead for the rollout; pre-planning with Royce; to be added to TestFlight
+- Matt — Gulf build owner; warehouse scope; bug bash; release planning
+- Josh — release planning past pilot; earlier architecture partner and prototype author, now participating less
+- Bryson — external client app packaging (later)
+- Ian, Hogan — external messaging for the handoff
 
 # Log
 ## Early discovery
@@ -93,13 +90,13 @@ Owner in parentheses; date is when the thread was captured.
 - Confirmed that mobile device users have Salesforce Platform License, so API connectivity should not be problematic.
 - Working from [[Hardware Breakdown.png|Hardware Breakdown]] to determine platform priority.
 ## [[2026-09-01]]
-- Leadership: Gulf build pencils down 9/14; 9/28 reinforced as not a go-live-ready date. Bug bash to be defined (iPad, iPhone, Android?). Printing app exists (Thomas). Open question of building our own app versus working with Salesforce, and hybrid options.
+- Leadership: 9/28 reinforced as not a go-live-ready date. Bug bash to be defined (iPad, iPhone, Android?). Printing app exists (Thomas). Open question of building our own app versus working with Salesforce, and hybrid options.
 ## [[2026-09-08]]
 - Created [[Mobile Launch Brief.pdf|Mobile Launch Brief]] to guide timeline for delivery.
 - Began registration process for Apple Business and Google Play.
-- Leadership: derisking mobile is job one this week. Need access to Apple and Google accounts. Researching how the SF mobile app understands org configuration. Sep 28 messaging: less is more, a right move six months in the making, not a last-minute audible; Hogan and Matt to align by EOD Wed.
+- Leadership: derisking mobile is job one this week. Need access to Apple and Google accounts. Researching how the SF mobile app understands org configuration. Messaging: less is more, a right move six months in the making, not a last-minute audible; Hogan and Matt to align by EOD Wed.
 ## [[2026-09-09]]
-- Met with Matt, Josh, Elliot and Jeff to define progress tracks and assign responsibilities (see `tracks` above).
+- Met with Matt, Josh, Elliot and Jeff to define progress tracks and assign responsibilities.
 ## [[2026-09-10]]
 - Received the [Requirements Document](https://docs.google.com/document/d/1GHJZU3g-R_bHOY-oWG99vewXhBCfeLyegmLwRzbxM7M/edit?tab=t.0) for review.
 - Replied to additional information requests from Apple Business and Google Play. Google Play confirmed verification.
@@ -109,18 +106,22 @@ Owner in parentheses; date is when the thread was captured.
 ## [[2026-09-15]]
 - Leadership: discuss printing app with Jeff and Thomas. Messaging on the app to stay a non-event; communication from Ian/Hogan; Royce to supply benefit details with Elliot.
 ## [[2026-09-17]]
-- Captured the companion-app perspective questions (release cycle, compatibility, updates, multi-org). Scheduled mobile enablement with Jeff and Mack. Noted that mobile was not surfaced as a risk in leadership; unresolved whether that was right.
+- Captured the companion-app perspective questions (release cycle, compatibility, updates, multi-org). Scheduled mobile enablement with Jeff and Mack. Noted that mobile was not surfaced as a risk in leadership; later settled.
 ## [[2026-09-21]]
 - Need a sandbox user for Jeff. Check-deposit use case needs understanding.
 ## [[2026-09-22]]
-- Jeff's security review org must be kept from deletion. Takeaway on CD: provision a dedicated org for mobile continuous delivery after Gulf settles and feed its credentials into the iOS security review submission. Test SSO. Set up TestFlight for Ohanafy people. External client app: talk to Bryson later.
+- Jeff's review org must be kept from deletion. Takeaway on CD: provision a dedicated org for mobile continuous delivery after Gulf settles and feed its credentials into the iOS review submission. Test SSO. External client app: talk to Bryson later.
+## [[2026-09-23]]
+- Correction pass with Royce (23 claims reviewed). Handoff moved to Oct 12. Apple verified; TestFlight in use; App Store review expected within days. Josh off the architecture track. Printing app folding into the mobile app after a handoff meeting; work continues with Jeff and Royce. Enablement meetings with Mack held; pre-planning underway. Requirements review finished; scope grew several times, now stabilizing. First rollout wave is 50 users. App is named Ohanafy Mobile. Salesforce security review does not apply to the app. "Mobile not surfaced as a risk" question settled.
+- Done since last update: reviewed the requirements document; watched the Warehouse Z videos; supplied benefit details for the handoff messaging; understood the review process that applies.
+- Moved out of this front (Gulf Pilot material): Gulf Salesforce build pencils down Sep 14; Gulf game visit Sat Sep 26.
 
 # Reference
-- [Mobile App Requirements](https://docs.google.com/document/d/1GHJZU3g-R_bHOY-oWG99vewXhBCfeLyegmLwRzbxM7M/edit?tab=t.0) (Google Doc, received 2026-09-10)
+- [Mobile App Requirements](https://docs.google.com/document/d/1GHJZU3g-R_bHOY-oWG99vewXhBCfeLyegmLwRzbxM7M/edit?tab=t.0) (Google Doc, received 2026-09-10; review complete)
 - [[Mobile Launch Brief.pdf|Mobile Launch Brief]] (2026-09-08)
-- [[Ohanafy Native.pdf|Prototype Overview]] (Josh)
+- [[Ohanafy Native.pdf|Prototype Overview]] (Josh; "Native" was the prototype's name, the app is Ohanafy Mobile)
 - [[Hardware Breakdown.png|Hardware Breakdown]]
 - [[SF OEM Email.png|Salesforce OEM email]] — Mobile Offline discontinued for new Mobile App Plus contracts, 2026-07-31
-- [Apple TestFlight](https://testflight.apple.com)
+- [Apple TestFlight](https://testflight.apple.com) (in use)
 - hub.ohanafy.com (noted 2026-09-09; purpose to confirm)
-- Slack channel and Jira epic: **not yet identified** — add at first reconcile
+- Slack channel and Jira epic: unknown, probably none — check at first reconcile

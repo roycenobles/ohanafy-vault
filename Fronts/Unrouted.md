@@ -9,4 +9,6 @@ owner: Royce Nobles
 
 # Open threads
 
-*(empty — first triage of the September backlog will populate this)*
+## Likely front: Gulf Pilot
+- Gulf Salesforce build "pencils down" was 2026-09-14 (Matt, [[2026-09-01]]). Moved out of [[Mobile Application]] 2026-09-23; not mobile-specific.
+- Royce at the Gulf game in Mobile, AL, Saturday 2026-09-26 (the only on-site visit currently planned; earlier 9/24–9/29 plan superseded). From [[2026-09-01]] and [[2026-09-11]].

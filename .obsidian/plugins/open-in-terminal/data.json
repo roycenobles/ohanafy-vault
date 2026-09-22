@@ -1,0 +1,20 @@
+{
+  "enableNoteContext": false,
+  "promptPrefix": "Read ",
+  "promptSuffix": ". If there are todos, propose a plan to handle them one at a time.",
+  "terminalApp": {
+    "macos": "Warp"
+  },
+  "openAtCurrentNoteFolder": false,
+  "reuseExistingMacApp": true,
+  "enableClaude": false,
+  "enableCodex": false,
+  "enableCopilot": false,
+  "enableCursor": false,
+  "enableGemini": false,
+  "enableOpencode": false,
+  "enableWslOnWindows": false,
+  "enableGitCommitPush": false,
+  "enableGitPull": false,
+  "defaultCommitMessage": "update"
+}

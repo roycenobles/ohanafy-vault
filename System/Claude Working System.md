@@ -5,7 +5,7 @@ status: living
 updated: 2026-09-22
 source: https://claude.ai/code/artifact/3b82f615-f9ec-4a42-935a-a22ec84d68d0
 ---
-> Vault copy of the plan. The collaborative, commentable version is the [Claude doc](https://claude.ai/code/artifact/3b82f615-f9ec-4a42-935a-a22ec84d68d0); this note is re-exported from it when the plan changes. Decisions referenced here live in `Decisions/` ([[DEC-0001 Vault sync model]], [[DEC-0002 Identity documents live outside the vault]], [[DEC-0003 GitHub credential for cloud roles]]).
+> Vault copy of the plan. The collaborative, commentable version is the [Claude doc](https://claude.ai/code/artifact/3b82f615-f9ec-4a42-935a-a22ec84d68d0); this note is re-exported from it when the plan changes. Decisions referenced here live in `Decisions/` ([[DEC-0001 Vault sync model]], [[DEC-0002 Identity documents live outside the vault]], [[DEC-0003 GitHub credential for cloud roles]], [[DEC-0004 Review before history]]).
 
 # Claude Working System
 
@@ -54,7 +54,7 @@ The vault already contains the right pattern once. The Mobile Application note (
 
 ## Design principles
 
-Six rules, meant to survive changes in tools and in the role.
+Seven rules, meant to survive changes in tools and in the role.
 
 1. Memory before sensors, sensors before roles. Nothing reads from Slack, Jira, or email until there is a structured place for it to write to and a decision log for it to check against.
 2. The vault is the canonical state. Obsidian is the reading and thinking surface. Claude sessions and Claude Code are the hands and the sensors. Anything an agent learns or decides that matters tomorrow is written into the vault, or it did not happen.
@@ -62,6 +62,7 @@ Six rules, meant to survive changes in tools and in the role.
 4. Roles share one brain. Each role has a charter (focus, what it watches, what it may write) and a recognizable commit identity, but all roles read the same decision log, the same front notes, and the same open-thread list.
 5. Retrieval by topic and decision, never by date. Daily notes stay as capture, but nothing lives only in a daily note. Extraction into front notes, decisions, and open threads is a designed, non-optional step, the way compound engineering made write-back non-optional.
 6. One write rule, and nothing to guard. Identity documents, contracts, and anything used to prove authority to a vendor live in the password manager, never in the vault, so there is no private folder to architect around ([[DEC-0002 Identity documents live outside the vault|DEC-0002]]). For everything else, agents follow a single line: do not write anything you found that Royce would not post in the leadership channel himself. The vault is a private repo read by people who already hold executive-level access; that is the bar.
+7. Nothing enters history unreviewed. In interactive work Claude stages changes and Royce commits, so every diff is read in Warp before it becomes history. Unattended roles cannot wait for a reviewer, so they commit to their own branch and open a pull request; `main` holds only what Royce has approved. The PR is the review surface for agent work, the same one used for human contributors. ([[DEC-0004 Review before history|DEC-0004]])
 
 ## Proposed shape
 
@@ -92,13 +93,14 @@ Everything flows through the vault. Roles read it before acting and write to it 
 
 ## Decisions to make
 
-The decision log lives in the vault under `Decisions/`, one note per decision in ADR shape (context, options, decision, consequences, who was told). Three entries exist as of 2026-09-22; the rest are still open here.
+The decision log lives in the vault under `Decisions/`, one note per decision in ADR shape (context, options, decision, consequences, who was told). Four entries exist as of 2026-09-22; the rest are still open here.
 
 | Decision | Options | Status | Why it matters now |
 | --- | --- | --- | --- |
 | Vault sync model | (a) iCloud for devices plus git for agents, GitHub wins conflicts; (b) git only; (c) Obsidian Sync plus git | Decided (a), [[DEC-0001 Vault sync model\|DEC-0001]]. Repo `roycenobles/ohanafy-vault`, `.gitignore` in place | Cloud roles can reach the vault whether or not the Mac is awake |
 | Sensitive material boundary | (a) gitignored private folder; (b) sibling folder outside the vault; (c) password manager | Decided (c), [[DEC-0002 Identity documents live outside the vault\|DEC-0002]]. Files moved to Bitwarden; no private folder | Nothing sensitive left in the vault to architect around |
 | Write rule for agents | Three tiers; or one line | Decided: one line, in DEC-0002 | Simple enough to be followed by every role without interpretation |
+| Review before history | (a) Claude commits directly; (b) Claude stages, Royce commits; roles work on branches and open PRs | Decided (b), [[DEC-0004 Review before history\|DEC-0004]] | Every change is read before it becomes history; PRs are the review surface for unattended roles |
 | GitHub credential for cloud roles | (a) proxy-injected credential, as Salesforce and Jira already are; (b) fine-grained token in the task configuration | Pending, [[DEC-0003 GitHub credential for cloud roles\|DEC-0003]]. Due when the first role runs unattended | Whichever path, scoped to one repo, contents only, with an expiry |
 | Note shapes | Fronts, decisions, open threads, learnings, reference; or fewer to start | Open. Leaning: all five, templates for fronts and decisions first | Shapes are what make retrieval by topic work |
 | Retrofit the journal | Extract Aug 31 to Sep 22 now; or start clean | Open. Leaning: extract once, as the first supervised task | 27 open items and decision-bearing leadership notes exist |

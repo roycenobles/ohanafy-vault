@@ -12,7 +12,7 @@ communicated: []
 **Decision:** The Ohanafy vault uses two sync channels for two audiences. iCloud syncs the vault between Royce's devices. A private GitHub repository (`roycenobles/ohanafy-vault`) syncs the vault between the vault and Claude. GitHub is the source of truth when the two disagree.
 
 ## Context
-The vault is the canonical memory for the working system described in [[Claude Working System]]. Claude reaches it two ways: as a connected folder when a session is linked to the MacBook, and by cloning the repository when running unattended in the cloud. Only the second path works while the Mac is asleep, so standing roles depend on the repository being current.
+The vault is the canonical memory for the working system described in [[Claude Working System]] (System/). Claude reaches it two ways: as a connected folder when a session is linked to the MacBook, and by cloning the repository when running unattended in the cloud. Only the second path works while the Mac is asleep, so standing roles depend on the repository being current.
 
 ## Options considered
 1. **iCloud for devices, git for Claude** (chosen). Keeps existing device sync; adds a repo Claude can always reach. Risk: iCloud and git in one folder can produce conflicted copies or mangle `.git` during sync.

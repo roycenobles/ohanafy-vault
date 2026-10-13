@@ -1,0 +1,11 @@
+Listed in order of relative criticality for Gulf's business.
+- [[OpenText (EDI)]] - Electronic Data Interchange (POs, Invoices, etc)
+- Fintech (FTP) - 
+- Cirrus Tech - 
+- Rehrig - 
+- Samsara - 
+- UKG - 
+- RedBull MSA - 
+- VIP SRS Out
+- Salsify API, FTP
+- Rainforest

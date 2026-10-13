@@ -10,6 +10,18 @@
       "ctime": 1791901451455,
       "path": "Archive/2026/10-October/Onboarding/ohanafy-employee-handbook.pdf",
       "title": "Employee Handbook"
+    },
+    {
+      "type": "group",
+      "ctime": 1791917180991,
+      "items": [
+        {
+          "type": "file",
+          "ctime": 1791917173233,
+          "path": "Projects/Gulf Go Live/Gulf Go Live.md"
+        }
+      ],
+      "title": "Projects"
     }
   ]
 }

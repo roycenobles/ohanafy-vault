@@ -1,4 +1,6 @@
 {
   "defaultViewMode": "preview",
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "showLineNumber": false,
+  "openBehavior": "daily"
 }

@@ -1,11 +1,11 @@
 Listed in order of relative criticality for Gulf's business.
 - [[OpenText (EDI)]] - Electronic Data Interchange (POs, Invoices, etc)
-- Fintech (FTP) - 
-- Cirrus Tech - 
-- Rehrig - 
-- Samsara - 
-- UKG - 
-- RedBull MSA - 
-- VIP SRS Out
-- Salsify API, FTP
-- Rainforest
+- [[Fintech (FTP)]] - EFT invoice upload and remittance for alcohol accounts
+- [[Cirrus Tech]] - Warehouse system sync (products, pallets, bin counts)
+- [[Rehrig]] - Pallet pick data to VOR for dock-out verification
+- [[Samsara]] - Fleet telematics in (vehicles, drivers, trips, HOS)
+- [[UKG]] - Employees, time punches and time off in
+- [[RedBull MSA]] - Daily invoice and inventory file to Red Bull
+- [[VIP SRS Out]] - Nightly depletion reporting to suppliers via VIP
+- [[Salsify]] - Supplier product content in (API for Molson, FTP for Constellation)
+- [[Rainforest]] - ACH/card payment processing on invoices
